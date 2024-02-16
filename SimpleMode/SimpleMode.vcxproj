@@ -1,0 +1,284 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Project DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <ItemGroup Label="ProjectConfigurations">
+    <ProjectConfiguration Include="Debug|Win32">
+      <Configuration>Debug</Configuration>
+      <Platform>Win32</Platform>
+    </ProjectConfiguration>
+    <ProjectConfiguration Include="Release|Win32">
+      <Configuration>Release</Configuration>
+      <Platform>Win32</Platform>
+    </ProjectConfiguration>
+    <ProjectConfiguration Include="Debug|x64">
+      <Configuration>Debug</Configuration>
+      <Platform>x64</Platform>
+    </ProjectConfiguration>
+    <ProjectConfiguration Include="Release|x64">
+      <Configuration>Release</Configuration>
+      <Platform>x64</Platform>
+    </ProjectConfiguration>
+  </ItemGroup>
+  <PropertyGroup Label="Globals">
+    <VCProjectVersion>16.0</VCProjectVersion>
+    <Keyword>Win32Proj</Keyword>
+    <ProjectGuid>{d3877b0f-2ab7-4d8d-a506-009409260b1d}</ProjectGuid>
+    <RootNamespace>SimpleMode</RootNamespace>
+    <WindowsTargetPlatformVersion>10.0.22000.0</WindowsTargetPlatformVersion>
+    <ProjectName>MiniSimpleMode</ProjectName>
+  </PropertyGroup>
+  <Import Project="$(VCTargetsPath)\Microsoft.Cpp.Default.props" />
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'" Label="Configuration">
+    <ConfigurationType>DynamicLibrary</ConfigurationType>
+    <UseDebugLibraries>true</UseDebugLibraries>
+    <PlatformToolset>v143</PlatformToolset>
+    <CharacterSet>MultiByte</CharacterSet>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'" Label="Configuration">
+    <ConfigurationType>DynamicLibrary</ConfigurationType>
+    <UseDebugLibraries>false</UseDebugLibraries>
+    <PlatformToolset>v143</PlatformToolset>
+    <WholeProgramOptimization>true</WholeProgramOptimization>
+    <CharacterSet>MultiByte</CharacterSet>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'" Label="Configuration">
+    <ConfigurationType>DynamicLibrary</ConfigurationType>
+    <UseDebugLibraries>true</UseDebugLibraries>
+    <PlatformToolset>v143</PlatformToolset>
+    <CharacterSet>Unicode</CharacterSet>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'" Label="Configuration">
+    <ConfigurationType>DynamicLibrary</ConfigurationType>
+    <UseDebugLibraries>false</UseDebugLibraries>
+    <PlatformToolset>v143</PlatformToolset>
+    <WholeProgramOptimization>true</WholeProgramOptimization>
+    <CharacterSet>Unicode</CharacterSet>
+  </PropertyGroup>
+  <Import Project="$(VCTargetsPath)\Microsoft.Cpp.props" />
+  <ImportGroup Label="ExtensionSettings">
+  </ImportGroup>
+  <ImportGroup Label="Shared">
+  </ImportGroup>
+  <ImportGroup Label="PropertySheets" Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
+    <Import Project="$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props" Condition="exists('$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props')" Label="LocalAppDataPlatform" />
+  </ImportGroup>
+  <ImportGroup Label="PropertySheets" Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
+    <Import Project="$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props" Condition="exists('$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props')" Label="LocalAppDataPlatform" />
+  </ImportGroup>
+  <ImportGroup Label="PropertySheets" Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">
+    <Import Project="$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props" Condition="exists('$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props')" Label="LocalAppDataPlatform" />
+  </ImportGroup>
+  <ImportGroup Label="PropertySheets" Condition="'$(Configuration)|$(Platform)'=='Release|x64'">
+    <Import Project="$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props" Condition="exists('$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props')" Label="LocalAppDataPlatform" />
+  </ImportGroup>
+  <PropertyGroup Label="UserMacros" />
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
+    <IncludePath>D:\C语言\库\curl-8.6.0_1-win32-mingw\include;D:\源代码\C语言\源码\SimpleMode\includes\glm;C:\Program Files %28x86%29\Microsoft DirectX SDK %28June 2010%29\Include;$(IncludePath)</IncludePath>
+    <LibraryPath>D:\C语言\库\curl-8.6.0_1-win32-mingw\lib;C:\Program Files %28x86%29\Microsoft DirectX SDK %28June 2010%29\Lib\x86;$(LibraryPath)</LibraryPath>
+    <ExternalIncludePath>$(ExternalIncludePath)</ExternalIncludePath>
+    <ReferencePath>D:\源代码\C语言\源码\SimpleMode\includes;$(ReferencePath)</ReferencePath>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
+    <IncludePath>D:\C语言\库\curl-8.6.0_1-win32-mingw\include;D:\源代码\C语言\源码\SimpleMode\includes\glm;C:\Program Files %28x86%29\Microsoft DirectX SDK %28June 2010%29\Include;$(IncludePath)</IncludePath>
+    <ReferencePath>D:\源代码\C语言\源码\SimpleMode\includes;$(ReferencePath)</ReferencePath>
+    <LibraryPath>D:\C语言\库\curl-8.6.0_1-win32-mingw\lib;C:\Program Files %28x86%29\Microsoft DirectX SDK %28June 2010%29\Lib\x86;$(LibraryPath)</LibraryPath>
+  </PropertyGroup>
+  <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
+    <ClCompile>
+      <WarningLevel>Level3</WarningLevel>
+      <SDLCheck>true</SDLCheck>
+      <PreprocessorDefinitions>WIN32;_DEBUG;SIMPLEMODE_EXPORTS;_WINDOWS;_USRDLL;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <ConformanceMode>true</ConformanceMode>
+      <PrecompiledHeader>NotUsing</PrecompiledHeader>
+      <PrecompiledHeaderFile>pch.h</PrecompiledHeaderFile>
+      <LanguageStandard>stdcpp17</LanguageStandard>
+    </ClCompile>
+    <Link>
+      <SubSystem>Windows</SubSystem>
+      <GenerateDebugInformation>true</GenerateDebugInformation>
+      <EnableUAC>false</EnableUAC>
+      <AdditionalDependencies>opengl32.lib;kernel32.lib;d3d11.lib;d3dcompiler.lib;dxgi.lib;%(AdditionalDependencies)</AdditionalDependencies>
+    </Link>
+  </ItemDefinitionGroup>
+  <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
+    <ClCompile>
+      <WarningLevel>Level3</WarningLevel>
+      <FunctionLevelLinking>true</FunctionLevelLinking>
+      <IntrinsicFunctions>true</IntrinsicFunctions>
+      <SDLCheck>true</SDLCheck>
+      <PreprocessorDefinitions>WIN32;NDEBUG;SIMPLEMOD_EXPORTS;_WINDOWS;_USRDLL;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <ConformanceMode>true</ConformanceMode>
+      <PrecompiledHeader>NotUsing</PrecompiledHeader>
+      <LanguageStandard>stdcpp17</LanguageStandard>
+      <RuntimeLibrary>MultiThreadedDLL</RuntimeLibrary>
+    </ClCompile>
+    <Link>
+      <SubSystem>Windows</SubSystem>
+      <EnableCOMDATFolding>true</EnableCOMDATFolding>
+      <OptimizeReferences>true</OptimizeReferences>
+      <GenerateDebugInformation>true</GenerateDebugInformation>
+      <EnableUAC>false</EnableUAC>
+      <AdditionalDependencies>opengl32.lib;kernel32.lib;d3d11.lib;d3dcompiler.lib;dxgi.lib;%(AdditionalDependencies)</AdditionalDependencies>
+    </Link>
+  </ItemDefinitionGroup>
+  <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">
+    <ClCompile>
+      <WarningLevel>Level3</WarningLevel>
+      <SDLCheck>true</SDLCheck>
+      <PreprocessorDefinitions>_DEBUG;SIMPLEMODE_EXPORTS;_WINDOWS;_USRDLL;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <ConformanceMode>true</ConformanceMode>
+      <PrecompiledHeader>Use</PrecompiledHeader>
+      <PrecompiledHeaderFile>pch.h</PrecompiledHeaderFile>
+    </ClCompile>
+    <Link>
+      <SubSystem>Windows</SubSystem>
+      <GenerateDebugInformation>true</GenerateDebugInformation>
+      <EnableUAC>false</EnableUAC>
+    </Link>
+  </ItemDefinitionGroup>
+  <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'">
+    <ClCompile>
+      <WarningLevel>Level3</WarningLevel>
+      <FunctionLevelLinking>true</FunctionLevelLinking>
+      <IntrinsicFunctions>true</IntrinsicFunctions>
+      <SDLCheck>true</SDLCheck>
+      <PreprocessorDefinitions>NDEBUG;SIMPLEMODE_EXPORTS;_WINDOWS;_USRDLL;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <ConformanceMode>true</ConformanceMode>
+      <PrecompiledHeader>Use</PrecompiledHeader>
+      <PrecompiledHeaderFile>pch.h</PrecompiledHeaderFile>
+      <LanguageStandard>stdcpp17</LanguageStandard>
+    </ClCompile>
+    <Link>
+      <SubSystem>Windows</SubSystem>
+      <EnableCOMDATFolding>true</EnableCOMDATFolding>
+      <OptimizeReferences>true</OptimizeReferences>
+      <GenerateDebugInformation>true</GenerateDebugInformation>
+      <EnableUAC>false</EnableUAC>
+    </Link>
+  </ItemDefinitionGroup>
+  <ItemGroup>
+    <ClInclude Include="..\includes\atlrx.h" />
+    <ClInclude Include="..\includes\chakra\ChakraCommon.h" />
+    <ClInclude Include="..\includes\chakra\ChakraCommonWindows.h" />
+    <ClInclude Include="..\includes\chakra\ChakraCore.h" />
+    <ClInclude Include="..\includes\chakra\ChakraCoreWindows.h" />
+    <ClInclude Include="..\includes\chakra\ChakraDebug.h" />
+    <ClInclude Include="..\includes\detours.h" />
+    <ClInclude Include="..\includes\imgui\Hub\blur.hpp" />
+    <ClInclude Include="..\includes\imgui\Hub\blur_x.h" />
+    <ClInclude Include="..\includes\imgui\Hub\blur_y.h" />
+    <ClInclude Include="..\includes\imgui\imconfig.h" />
+    <ClInclude Include="..\includes\imgui\imgui.h" />
+    <ClInclude Include="..\includes\imgui\imgui_impl_dx11.h" />
+    <ClInclude Include="..\includes\imgui\imgui_impl_opengl2.h" />
+    <ClInclude Include="..\includes\imgui\imgui_impl_win32.h" />
+    <ClInclude Include="..\includes\imgui\imgui_internal.h" />
+    <ClInclude Include="..\includes\imgui\imstb_rectpack.h" />
+    <ClInclude Include="..\includes\imgui\imstb_textedit.h" />
+    <ClInclude Include="..\includes\imgui\imstb_truetype.h" />
+    <ClInclude Include="..\includes\kiero\kiero.h" />
+    <ClInclude Include="..\includes\kiero\minhook\include\MinHook.h" />
+    <ClInclude Include="..\includes\kiero\minhook\src\buffer.h" />
+    <ClInclude Include="..\includes\kiero\minhook\src\hde\hde32.h" />
+    <ClInclude Include="..\includes\kiero\minhook\src\hde\hde64.h" />
+    <ClInclude Include="..\includes\kiero\minhook\src\hde\pstdint.h" />
+    <ClInclude Include="..\includes\kiero\minhook\src\hde\table32.h" />
+    <ClInclude Include="..\includes\kiero\minhook\src\hde\table64.h" />
+    <ClInclude Include="..\includes\kiero\minhook\src\trampoline.h" />
+    <ClInclude Include="..\includes\RegExp.h" />
+    <ClInclude Include="..\includes\stb_image\imageloaderdx11.h" />
+    <ClInclude Include="..\includes\stb_image\stb_image.h" />
+    <ClInclude Include="..\includes\StringProcess.h" />
+    <ClInclude Include="..\includes\WinHttpClient.h" />
+    <ClInclude Include="..\Memory\GameData.h" />
+    <ClInclude Include="..\Memory\Hooks.h" />
+    <ClInclude Include="..\Misc\icoA.h" />
+    <ClInclude Include="..\Misc\icoB.h" />
+    <ClInclude Include="..\SDK\ActorBase.h" />
+    <ClInclude Include="..\SDK\ClientInstance.h" />
+    <ClInclude Include="..\SDK\GameMode.h" />
+    <ClInclude Include="..\SDK\Item.h" />
+    <ClInclude Include="..\SDK\ActorList.h" />
+    <ClInclude Include="..\SDK\World.h" />
+    <ClInclude Include="..\Utils\HMath.h" />
+    <ClInclude Include="..\Utils\Json.hpp" />
+    <ClInclude Include="..\Utils\Keys.h" />
+    <ClInclude Include="..\Utils\logger.h" />
+    <ClInclude Include="..\Utils\Utils.h" />
+    <ClInclude Include="..\Utils\xorstr.h" />
+    <ClInclude Include="Config\ConfigManager.h" />
+    <ClInclude Include="Config\GetUsres.h" />
+    <ClInclude Include="Loader.h" />
+    <ClInclude Include="Menu\color_t.hpp" />
+    <ClInclude Include="Menu\css.h" />
+    <ClInclude Include="Menu\Font\background_pic.h" />
+    <ClInclude Include="Menu\Font\Font.h" />
+    <ClInclude Include="Menu\Font\ico_font.h" />
+    <ClInclude Include="Menu\Font\segue_font.h" />
+    <ClInclude Include="Menu\gui.hpp" />
+    <ClInclude Include="Menu\Hub.h" />
+    <ClInclude Include="Menu\ImGuiMenu.h" />
+    <ClInclude Include="Menu\ModuleList.h" />
+    <ClInclude Include="Module\ModManager.h" />
+    <ClInclude Include="Module\Modules\Airjump.h" />
+    <ClInclude Include="Module\Modules\Bhop.h" />
+    <ClInclude Include="Module\Modules\D3DEsp.h" />
+    <ClInclude Include="Module\Modules\Derp.h" />
+    <ClInclude Include="Module\Modules\IModule.h" />
+    <ClInclude Include="Module\Modules\Killaura.h" />
+    <ClInclude Include="Module\Modules\Nuker.h" />
+    <ClInclude Include="Module\Modules\Rangeblock.h" />
+    <ClInclude Include="Module\Modules\speed.h" />
+  </ItemGroup>
+  <ItemGroup>
+    <ClCompile Include="..\includes\imgui\Hub\blur.cpp" />
+    <ClCompile Include="..\includes\imgui\imgui.cpp" />
+    <ClCompile Include="..\includes\imgui\imgui_demo.cpp" />
+    <ClCompile Include="..\includes\imgui\imgui_draw.cpp" />
+    <ClCompile Include="..\includes\imgui\imgui_impl_dx11.cpp" />
+    <ClCompile Include="..\includes\imgui\imgui_impl_opengl2.cpp" />
+    <ClCompile Include="..\includes\imgui\imgui_impl_win32.cpp" />
+    <ClCompile Include="..\includes\imgui\imgui_tables.cpp" />
+    <ClCompile Include="..\includes\imgui\imgui_widgets.cpp" />
+    <ClCompile Include="..\includes\kiero\kiero.cpp" />
+    <ClCompile Include="..\includes\kiero\minhook\src\buffer.c" />
+    <ClCompile Include="..\includes\kiero\minhook\src\hde\hde32.c" />
+    <ClCompile Include="..\includes\kiero\minhook\src\hde\hde64.c" />
+    <ClCompile Include="..\includes\kiero\minhook\src\hook.c" />
+    <ClCompile Include="..\includes\kiero\minhook\src\trampoline.c" />
+    <ClCompile Include="..\Memory\GameData.cpp" />
+    <ClCompile Include="..\Memory\Hooks.cpp" />
+    <ClCompile Include="..\SDK\ActorBase.cpp" />
+    <ClCompile Include="..\SDK\ClientInstance.cpp" />
+    <ClCompile Include="..\SDK\GameMode.cpp" />
+    <ClCompile Include="..\SDK\Item.cpp" />
+    <ClCompile Include="..\SDK\ActorList.cpp" />
+    <ClCompile Include="..\SDK\World.cpp" />
+    <ClCompile Include="..\Utils\logger.cpp" />
+    <ClCompile Include="..\Utils\Utils.cpp" />
+    <ClCompile Include="Config\ConfigManager.cpp" />
+    <ClCompile Include="Config\GetUsres.cpp" />
+    <ClCompile Include="Loader.cpp" />
+    <ClCompile Include="Menu\css.cpp" />
+    <ClCompile Include="Menu\gui.cpp" />
+    <ClCompile Include="Menu\Hub.cpp" />
+    <ClCompile Include="Menu\ImGuiMenu.cpp" />
+    <ClCompile Include="Menu\ModuleList.cpp" />
+    <ClCompile Include="Module\ModManager.cpp" />
+    <ClCompile Include="Module\Modules\Airjump.cpp" />
+    <ClCompile Include="Module\Modules\Bhop.cpp" />
+    <ClCompile Include="Module\Modules\D3DEsp.cpp" />
+    <ClCompile Include="Module\Modules\Derp.cpp" />
+    <ClCompile Include="Module\Modules\IModule.cpp" />
+    <ClCompile Include="Module\Modules\Killaura.cpp" />
+    <ClCompile Include="Module\Modules\Nuker.cpp" />
+    <ClCompile Include="Module\Modules\Rangeblock.cpp" />
+    <ClCompile Include="Module\Modules\speed.cpp" />
+  </ItemGroup>
+  <ItemGroup>
+    <Library Include="..\includes\detours.X86\detours.lib" />
+    <Library Include="..\includes\detours.X86\syelog.lib" />
+  </ItemGroup>
+  <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
+  <ImportGroup Label="ExtensionTargets">
+  </ImportGroup>
+</Project>
