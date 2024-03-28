@@ -8,9 +8,11 @@ private:
 	bool veinMiner = false;
 	bool autodestroy = false;
 public:
+
+
 	Nuker();
 	~Nuker();
 	// Inherited via IModule
 	virtual void onTick(GameMode* gm) override;
-	virtual const char* getModuleName();
+	virtual std::string getModuleName();
 };

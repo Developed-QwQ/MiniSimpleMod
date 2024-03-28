@@ -1,11 +1,5 @@
 #include "ModManager.h"
-#include "Modules/Rangeblock.h"
-#include "../Menu/ModuleList.h"
-#include "Modules/Airjump.h"
-#include "Modules/D3DEsp.h"
-#include "Modules/Nuker.h"
-#include "Modules/speed.h"
-#include "Modules/Derp.h"
+
 ModManager::ModManager(GameData* gameData) {
 	gameData = gameData;
 }
@@ -20,22 +14,22 @@ void ModManager::initMods() {
 	LOG_INFO("Initializing modules.");
 	{
 		auto lock = lockModuleListExclusive();
+		this->moduleList.push_back(std::shared_ptr<IModule>(new ModuleList));
 		this->moduleList.push_back(std::shared_ptr<IModule>(new Rangeblock));
+		this->moduleList.push_back(std::shared_ptr<IModule>(new Killaura));
 		this->moduleList.push_back(std::shared_ptr<IModule>(new Airjump));
-		//this->mods.push_back(std::shared_ptr<IModule>(new ModuleList));
+		this->moduleList.push_back(std::shared_ptr<IModule>(new D3DEsp));
+		this->moduleList.push_back(std::shared_ptr<IModule>(new AutoTP));
 		this->moduleList.push_back(std::shared_ptr<IModule>(new Nuker));
 		this->moduleList.push_back(std::shared_ptr<IModule>(new speed));
+		this->moduleList.push_back(std::shared_ptr<IModule>(new Bhop));
 		this->moduleList.push_back(std::shared_ptr<IModule>(new Derp));
-		//this->mods.push_back(std::shared_ptr<IModule>(new D3DEsp));
-
-
-
-
+		this->moduleList.push_back(std::shared_ptr<IModule>(new Fly));
 
 		std::sort(moduleList.begin(), moduleList.end(), [](auto lhs, auto rhs) {
 			auto current = lhs;
 			auto other = rhs;
-			return std::string{*current->getModuleName()} < std::string{*other->getModuleName()};
+			return std::string{*current->getModuleName().c_str()} < std::string{*other->getModuleName().c_str()};
 			});
 
 		initialized = true;

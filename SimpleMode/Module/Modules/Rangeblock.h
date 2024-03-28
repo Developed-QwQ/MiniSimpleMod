@@ -1,7 +1,7 @@
 #pragma once
 #include "../ModManager.h"
 #include "IModule.h"
-class Rangeblock:public IModule{
+class Rangeblock :public IModule {
 private:
 	int delay = 0;
 	int nukerRadius = 4;
@@ -12,6 +12,5 @@ public:
 	~Rangeblock();
 
 	virtual void onEnable();
-	virtual const char* getModuleName();
+	virtual std::string getModuleName();
 };
-

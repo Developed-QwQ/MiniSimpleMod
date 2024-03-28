@@ -312,7 +312,12 @@ struct Vec3i {
 	Vec3i sub(const Vec3i& o) const {
 		return Vec3i(x - o.x, y - o.y, z - o.z);
 	}
+	int squaredlen() const { return x * x + y * y + z * z; }
+	int magnitude() const { return sqrtf(squaredlen()); }
 
+	int dist(const Vec3i& e) const {
+		return sub(e).magnitude();
+	}
 	void set(Vec3i* o) {
 		x = o->x;
 		y = o->y;
@@ -574,7 +579,13 @@ struct AABB {
 			aabb.upper.z > lower.z && upper.z > aabb.lower.z;
 	}
 };
-
+inline Vec3i pos(Vec3i copy) {
+	Vec3i pos;
+	pos.x = copy.x / 100;
+	pos.y = copy.y / 100;
+	pos.z = copy.z / 100;
+	return pos;
+}
 inline int random(int start, int end) {
 	return rand() % (end - start + 1) + start;
 }

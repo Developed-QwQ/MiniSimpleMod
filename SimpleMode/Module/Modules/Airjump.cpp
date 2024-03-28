@@ -8,16 +8,15 @@ Airjump::~Airjump()
 {
 }
 
-void Airjump::onEnable(){
-	if (auto Localplayer = Game.getLocalPlayer();Localplayer != nullptr) {
-		*reinterpret_cast<bool*>(reinterpret_cast<uintptr_t>(Localplayer->playerlocomotion) + 0xA4) = true;
-	}
+void Airjump::onEnable() {
+	if (Game.getLocalPlayer() == nullptr) return;
+	PlayerLocoMotion* PlayerLocomotion = Game.getLocalPlayer()->playerlocomotion;
+	PlayerLocomotion->onGround = true;
 }
 
-const char* Airjump::getModuleName() {
+std::string Airjump::getModuleName() {
 	return "AirJump";
 }
 
 void Airjump::onTick(GameMode* gm) {
-	
 }

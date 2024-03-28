@@ -1,47 +1,68 @@
 #include "Loader.h"
+#include "Config/UserManager.h"
+SlimUtils::SlimMem mem;
+const SlimUtils::SlimModule* gameModule;
 bool Loader::isRunning = true;
 HWND hWnd;
+
 BOOL CALLBACK EnumWindowsProc(HWND hwnd, LPARAM lParam);
 DWORD WINAPI ejectThread(LPVOID lpParam) {
-	return false;
+	while (Loader::isRunning) {
+		if (GetAsyncKeyState(VK_CONTROL) && GetAsyncKeyState(0x4C)) {
+			Loader::isRunning = false;
+			break;
+		}
+		Sleep(20);
+	}
+	LOG_INFO("Stopping Threads...");
+	GameData::terminate();
+	Sleep(50);
+
+	FreeLibraryAndExitThread(static_cast<HMODULE>(lpParam), 1);
 }
 DWORD WINAPI start(LPVOID lpParam) {
 	{
 		DWORD targetProcessId = GetCurrentProcessId();
-		system("taskkill /f /t /im MicroMiniNew.exe");
+	//	auto winhwid = FindWindow(NULL,"MiniGameApp.exe");
+	//	ShowWindow(winhwid, SW_MAXIMIZE);
+		//system("taskkill /f /t /im MicroMiniNew.exe");
 		EnumWindows(EnumWindowsProc, (LPARAM)&targetProcessId);
 	}
 	OPEN_COONSOLE();
 	LOG_INFO("Starting up...");
-	GameData::initGameData();
+	LOG_EVENT("Sock up...");
+//	user->getSimpleUser();
+	DWORD procId = GetCurrentProcessId();
+	if (!mem.Open(procId, SlimUtils::ProcessAccess::Full)) {
+		LOG_INFO("Failed to open process, error-code: %i", GetLastError());
+		return 1;}
+	gameModule = mem.GetModule(L"libSandboxEngine.dll");
 	MH_Initialize();
-//	Hooks::Init();
-
 	DWORD ejectThreadId;
-	CreateThread(nullptr, NULL, (LPTHREAD_START_ROUTINE)ejectThread, lpParam, NULL, &ejectThreadId); 
+	CreateThread(nullptr, NULL, (LPTHREAD_START_ROUTINE)ejectThread, lpParam, NULL, &ejectThreadId);
+	GameData::initGameData(gameModule, &mem, lpParam);
+	Hooks::Init();
 
 	moduleMgr->initMods();
 	LOG_INFO("Initialized module manager (1/1)");
-	ImGuiMenu::Init();
-//	Hooks::Enable();
+
+	Hooks::Enable();
 	return TRUE;
 }
-BOOL __stdcall DllMain(HMODULE hModule,
-	DWORD ul_reason_for_call,
-	LPVOID) {
-	switch (ul_reason_for_call) {
-	case DLL_PROCESS_ATTACH: {
-		MessageBox(0, 0, 0, 0);
+BOOL APIENTRY DllMain(HMODULE hModule, DWORD  ul_reason_for_call, LPVOID lpReserved)
+{
+	switch (ul_reason_for_call)
+	{
+	case DLL_PROCESS_ATTACH:
 		CreateThread(NULL, NULL, (LPTHREAD_START_ROUTINE)start, hModule, NULL, NULL);
 		DisableThreadLibraryCalls(hModule);
-	} break;
+		break;
 	case DLL_PROCESS_DETACH: {
 		Hooks::Restore();
 		MH_Uninitialize();
-		LOG_INFO("MinHook-> Removing");
-		kiero::shutdown();
-		LOG_INFO("kiero-> Removing");
+		LOG_INFO("MinHook -> MH_Uninitialize");
 		moduleMgr->deInitMods();
+		LOG_INFO("moduleMgr -> deInitMods");
 		break;
 	}
 	}

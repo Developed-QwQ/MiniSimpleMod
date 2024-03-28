@@ -12,5 +12,5 @@ public:
 	/*virtual void onTick(GameMode* gm);
 	virtual void onDisable();
 	virtual void onFrame();*/
-	virtual const char* getModuleName();
+	virtual std::string getModuleName();
 };

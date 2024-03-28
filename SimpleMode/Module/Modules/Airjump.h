@@ -12,6 +12,6 @@ public:
 	~Airjump();
 	//GameMode* mod;
 	virtual void onEnable();
-	virtual const char* getModuleName() override;
+	virtual std::string getModuleName() override;
 	virtual void onTick(GameMode* gm) override;
 };

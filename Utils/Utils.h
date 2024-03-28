@@ -10,7 +10,7 @@
 #include <random>
 #include <sstream>
 #include <vector>
-
+#include <Windows.h>
 //#include "xorstr.h"
 
 static const char* const KeyNames[] = {
@@ -228,8 +228,8 @@ static inline void ImSwap(T& a, T& b) {
 #define PatchBytes(src, newBytes, size) Utils::patchBytes(src, newBytes, size)
 #define NopBytes(src, size) Utils::nopBytes(src, size)
 #else
+#define Getfunction(Module,szSignature) Utils::getfunction(Module,szSignature);
 #define FindSignature(szSignature) Utils::FindSignatureModule("libSandboxEngine.dll", szSignature)
-#define GetFindSignature(Module, szSignature) Utils::FindSignatureModule(Module, szSignature)
 #define GetOffsetFromSig(szSignature, offset) Utils::getOffsetFromSignature(szSignature, offset)
 #define GetVtableFromSig(szSignature, offset) Utils::getVtableFromSignature(szSignature, offset)
 #define PatchBytes(src, newBytes, size) Utils::patchBytes(src, newBytes, size)
@@ -446,23 +446,23 @@ public:
 		return L"";
 	}
 
-	static uintptr_t FindSignatureModule(const char* szModule, const char* szSignature);
+	uintptr_t FindSignatureModule(const char* szModule, const char* szSignature);
 
-	static uintptr_t getOffsetFromSignature(const char* szSignature, int offset);
+	uintptr_t getOffsetFromSignature(const char* szSignature, int offset);
 
-	static uintptr_t** getVtableFromSignature(const char* szSignature, int offset);
+	uintptr_t** getVtableFromSignature(const char* szSignature, int offset);
+	uintptr_t getfunction(const char* szModule,LPCSTR szSignature);
+	void GetCurrentSystemTime(tm& timeInfo);
 
-	static void GetCurrentSystemTime(tm& timeInfo);
+	void ApplySystemTime(std::stringstream* ss);
 
-	static void ApplySystemTime(std::stringstream* ss);
+	uintptr_t getBase();
 
-	static uintptr_t getBase();
+	 std::string sanitize(std::string text);
 
-	static std::string sanitize(std::string text);
+	 std::wstring stringToWstring(std::string txt);
 
-	static std::wstring stringToWstring(std::string txt);
-
-	static bool endsWith(std::wstring const& fullString, std::wstring const& ending) {
+	 bool endsWith(std::wstring const& fullString, std::wstring const& ending) {
 		if (fullString.length() >= ending.length()) {
 			return (0 == fullString.compare(fullString.length() - ending.length(), ending.length(), ending));
 		}
@@ -471,7 +471,7 @@ public:
 		}
 	}
 
-	static void ApplyRainbow(float* rcolors, const float modifier = 0.003f) {
+	 void ApplyRainbow(float* rcolors, const float modifier = 0.003f) {
 		if (rcolors[3] < 1) {
 			rcolors[0] = 1;
 			rcolors[1] = 0.6f;
@@ -488,11 +488,13 @@ public:
 		Utils::ColorConvertHSVtoRGB(rcolors[0], rcolors[1], rcolors[2], rcolors[0], rcolors[1], rcolors[2]);
 	}
 
-	static std::string getRttiBaseClassName(void* ptr);
+	 std::string getRttiBaseClassName(void* ptr);
 
-	static void nopBytes(void* dst, unsigned int size);
+	 void nopBytes(void* dst, unsigned int size);
 
-	static void copyBytes(void* src, void* dst, unsigned int size);
+	 void copyBytes(void* src, void* dst, unsigned int size);
 
-	static void patchBytes(void* dst, void* src, unsigned int size);
+	 void patchBytes(void* dst, void* src, unsigned int size);
 };
+
+extern Utils* utils;

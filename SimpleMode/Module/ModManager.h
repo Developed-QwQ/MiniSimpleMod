@@ -1,6 +1,5 @@
 #pragma once
 #include "../../Utils/logger.h"
-#include "Modules/IModule.h"
 
 #include <typeinfo>
 #include <vector>
@@ -10,6 +9,18 @@
 #include <shared_mutex>
 
 #include "../../Memory/GameData.h"
+
+#include "Modules/Rangeblock.h"
+#include "../Menu/ModuleList.h"
+#include "Modules/Killaura.h"
+#include "Modules/Airjump.h"
+#include "Modules/D3DEsp.h"
+#include "Modules/AutoTP.h"
+#include "Modules/Nuker.h"
+#include "Modules/speed.h"
+#include "Modules/Bhop.h"
+#include "Modules/Derp.h"
+#include "Modules/Fly.h"
 class ModManager {
 private:
 	GameData* gameData;

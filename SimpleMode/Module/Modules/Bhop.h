@@ -11,10 +11,10 @@ private:
 public:
 	Bhop();
 	~Bhop();
+	SettingEnum mode = SettingEnum(this);
 
-	GameData Game;
 	virtual void onEnable();
 	virtual void onDisable();
 	virtual void onFrame();
-	virtual const char* getModuleName();
+	virtual std::string getModuleName();
 };

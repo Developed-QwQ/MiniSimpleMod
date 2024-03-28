@@ -7,5 +7,4 @@ class ActorPlayerList :public ActorList {
 private:
 	uintptr_t* Instance = nullptr;
 public:
-
 };

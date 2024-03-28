@@ -24,13 +24,13 @@
 //		break;
 //	}
 //}
-IModule::IModule(std::string name, int key, Category c, const char* desc){
+IModule::IModule(std::string name, int key, Category c, const char* desc) {
 	this->keybind = key;
 	this->cat = c;
 	this->desc = desc;
 	//this->registerIntSetting(name, &this->keybind, this->keybind, 0, 0xFF);
 	this->registerBoolSetting(name, &this->enabled, false);
-	//this->ModulePos = Vec2(0.f, 0.f);
+	this->ModulePos = Vec2(0.f, 0.f);
 }
 IModule::~IModule() {
 	for (auto it = this->settings.begin(); it != this->settings.end(); it++) {
@@ -64,18 +64,18 @@ void IModule::checkEnabled() {
 	}
 }
 
-const char* IModule::getRawModuleName()
+std::string IModule::getRawModuleName()
 {
 	return getModuleName();
 }
 
-bool IModule::isEnabled(){
+bool IModule::isEnabled() {
 	return this->enabled;
 }
 
 bool IModule::isExtended()
 {
-	return this - extended;
+	return this ->extended;
 }
 
 void IModule::registerFloatSetting(std::string name, float* floatPtr, float defaultValue, float minValue, float maxValue) {
@@ -128,7 +128,7 @@ void IModule::registerIntSetting(std::string name, int* intPtr, int defaultValue
 
 	settings.push_back(setting);  // Add to list
 }
-void IModule::registerEnumSetting(std::string name, SettingEnum* ptr, int defaultValue){
+void IModule::registerEnumSetting(std::string name, SettingEnum* ptr, int defaultValue) {
 	SettingEntry* setting = new SettingEntry();
 	setting->valueType = ValueType::ENUM_T;
 	if (defaultValue < 0 || defaultValue >= ptr->GetCount())
@@ -215,7 +215,7 @@ bool IModule::isFlashMode()
 	return false;
 }
 
-void IModule::onAttack(ActorBase* )
+void IModule::onAttack(ActorBase*)
 {
 }
 
@@ -231,12 +231,12 @@ void IModule::onSaveConfig(void* conf)
 {
 }
 
-EnumEntry::EnumEntry(const std::string _name, const unsigned char value){
+EnumEntry::EnumEntry(const std::string _name, const unsigned char value) {
 	name = _name;
 	val = value;
 }
 
-std::string EnumEntry::GetName(){
+std::string EnumEntry::GetName() {
 	return name;
 }
 
@@ -245,7 +245,7 @@ unsigned char EnumEntry::GetValue()
 	return val;
 }
 
-SettingEnum::SettingEnum(std::vector<EnumEntry> entr, IModule* mod){
+SettingEnum::SettingEnum(std::vector<EnumEntry> entr, IModule* mod) {
 	Entrys = entr;
 	owner = mod;
 	std::sort(Entrys.begin(), Entrys.end(), [](EnumEntry rhs, EnumEntry lhs) {
@@ -253,7 +253,7 @@ SettingEnum::SettingEnum(std::vector<EnumEntry> entr, IModule* mod){
 		});
 }
 
-SettingEnum::SettingEnum(IModule* mod){
+SettingEnum::SettingEnum(IModule* mod) {
 	owner = mod;
 }
 
@@ -272,14 +272,14 @@ SettingEnum& SettingEnum::addEntry(EnumEntry entr) {
 	return *this;
 }
 
-EnumEntry& SettingEnum::GetEntry(int ind){
+EnumEntry& SettingEnum::GetEntry(int ind) {
 	return Entrys.at(ind);
 }
 
-EnumEntry& SettingEnum::GetSelectedEntry(){
+EnumEntry& SettingEnum::GetSelectedEntry() {
 	return GetEntry(selected);
 }
 
-int SettingEnum::GetCount(){
+int SettingEnum::GetCount() {
 	return (int)Entrys.size();
 }

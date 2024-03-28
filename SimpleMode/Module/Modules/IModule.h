@@ -47,7 +47,8 @@ enum ValueType {
 	INT_T,
 	BOOL_T,
 	TEXT_T,
-	ENUM_T
+	ENUM_T,
+	NULL_T
 };
 
 struct SettingValue {
@@ -71,7 +72,6 @@ struct SettingEntry {
 	SettingValue* intValue = nullptr;
 	SettingValue* floatValue = nullptr;
 
-
 	void* extraData; // Only used by enum for now
 
 	// ClickGui Data
@@ -86,13 +86,14 @@ public:
 	bool enabled = false;
 	bool extended = false;
 	int keybind = 0x0;
+	bool _Enum = false;
 	Vec2 ModulePos;
 private:
 	Category cat;
 	const char* desc;
 	std::vector<SettingEntry*> settings;
 protected:
-	IModule(std::string name,int key, Category c, const char* desc);
+	IModule(std::string name, int key, Category c, const char* desc);
 
 	void registerFloatSetting(std::string name, float* floatPtr, float defaultValue, float minValue, float maxValue);
 	void registerIntSetting(std::string name, int* intpTr, int defaultValue, int minValue, int maxValue);
@@ -100,17 +101,20 @@ protected:
 	void registerBoolSetting(std::string name, bool* boolPtr, bool defaultValue);
 public:
 	~IModule();
+
+	inline Vec2* getPos() { return &ModulePos; };
+
 	const int getkey() { return this->keybind; }
 	const char* getDesc() { return this->desc; }
 	Category getCateg() { return this->cat; }
-	std::vector<SettingEntry*> getSettings() { return this->settings; }
+	std::vector<SettingEntry*>* getSettings() { return &settings; }
 	void setEnabled(bool enb);
 
 	//bool isEnabled() { return this->enabled; }
 	void checkEnabled();
 	//bool isExtended() { return this->extended; }
-	virtual const char* getModuleName() = 0;
-	virtual const char* getRawModuleName();
+	virtual std::string getModuleName() = 0;
+	virtual std::string getRawModuleName();
 
 	virtual bool isEnabled();
 	virtual bool isExtended();

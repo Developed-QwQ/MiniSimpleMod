@@ -12,10 +12,10 @@
 #include "../includes/kiero/minhook/include/MinHook.h"
 #include "Module/ModManager.h"
 #include "../Memory/Hooks.h"
-#include "Menu/ImGuiMenu.h"
 #include "../Utils/HMath.h"
 #include "Menu/ModuleList.h"
 #include "../Memory/GameData.h"
+#include "../Memory/SlimMem.h"
 ModuleList* ListMod;
 using namespace std;
 class Loader

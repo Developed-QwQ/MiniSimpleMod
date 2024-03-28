@@ -43,9 +43,6 @@
     <Filter Include="include\includes\kiero">
       <UniqueIdentifier>{e883ff1c-5439-4c61-a2cf-944fdfadbe8a}</UniqueIdentifier>
     </Filter>
-    <Filter Include="include\Misc">
-      <UniqueIdentifier>{6f5c73bf-875e-42dd-816b-9b9aaa1cd175}</UniqueIdentifier>
-    </Filter>
     <Filter Include="include\SimpleMode\Module\Modules\Combat">
       <UniqueIdentifier>{203cb3cd-e9b2-4dbd-831c-7a55708b9ab4}</UniqueIdentifier>
     </Filter>
@@ -73,6 +70,9 @@
     <Filter Include="include\includes\lib\detours.X86">
       <UniqueIdentifier>{14f19311-ff33-4a98-bb85-1e877370caf5}</UniqueIdentifier>
     </Filter>
+    <Filter Include="include\SimpleMode\Menu\RGB&amp;HUB%27">
+      <UniqueIdentifier>{aad81775-cada-4927-b102-b018d6725906}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="..\Utils\HMath.h">
@@ -95,9 +95,6 @@
     </ClInclude>
     <ClInclude Include="Module\ModManager.h">
       <Filter>include\SimpleMode\Module</Filter>
-    </ClInclude>
-    <ClInclude Include="Menu\ImGuiMenu.h">
-      <Filter>include\SimpleMode\Menu</Filter>
     </ClInclude>
     <ClInclude Include="..\includes\chakra\ChakraCommon.h">
       <Filter>include\includes\chakra</Filter>
@@ -195,9 +192,6 @@
     <ClInclude Include="Menu\css.h">
       <Filter>include\SimpleMode\Menu</Filter>
     </ClInclude>
-    <ClInclude Include="Menu\Hub.h">
-      <Filter>include\SimpleMode\Menu</Filter>
-    </ClInclude>
     <ClInclude Include="..\includes\stb_image\stb_image.h">
       <Filter>include\includes</Filter>
     </ClInclude>
@@ -207,32 +201,11 @@
     <ClInclude Include="..\SDK\ActorBase.h">
       <Filter>include\SDK</Filter>
     </ClInclude>
-    <ClInclude Include="Menu\gui.hpp">
-      <Filter>include\SimpleMode\Menu</Filter>
-    </ClInclude>
-    <ClInclude Include="Menu\color_t.hpp">
-      <Filter>include\SimpleMode\Menu</Filter>
-    </ClInclude>
     <ClInclude Include="..\includes\stb_image\imageloaderdx11.h">
       <Filter>include\includes</Filter>
     </ClInclude>
-    <ClInclude Include="Menu\Font\segue_font.h">
-      <Filter>include\SimpleMode\Menu</Filter>
-    </ClInclude>
     <ClInclude Include="Menu\Font\background_pic.h">
       <Filter>include\SimpleMode\Menu</Filter>
-    </ClInclude>
-    <ClInclude Include="Menu\Font\Font.h">
-      <Filter>include\SimpleMode\Menu</Filter>
-    </ClInclude>
-    <ClInclude Include="Menu\Font\ico_font.h">
-      <Filter>include\SimpleMode\Menu</Filter>
-    </ClInclude>
-    <ClInclude Include="..\Misc\icoB.h">
-      <Filter>include\Misc</Filter>
-    </ClInclude>
-    <ClInclude Include="..\Misc\icoA.h">
-      <Filter>include\Misc</Filter>
     </ClInclude>
     <ClInclude Include="..\SDK\World.h">
       <Filter>include\SDK</Filter>
@@ -285,11 +258,59 @@
     <ClInclude Include="Module\Modules\Killaura.h">
       <Filter>include\SimpleMode\Module\Modules\Combat</Filter>
     </ClInclude>
-    <ClInclude Include="Config\ConfigManager.h">
-      <Filter>include\SimpleMode</Filter>
+    <ClInclude Include="Module\Modules\Fly.h">
+      <Filter>include\SimpleMode\Module\Modules\Movement</Filter>
     </ClInclude>
-    <ClInclude Include="Config\GetUsres.h">
-      <Filter>include\SimpleMode</Filter>
+    <ClInclude Include="Module\Modules\AutoTP.h">
+      <Filter>include\SimpleMode\Module\Modules\Player</Filter>
+    </ClInclude>
+    <ClInclude Include="Module\Modules\ESP.h">
+      <Filter>include\SimpleMode\Module\Modules\Visual</Filter>
+    </ClInclude>
+    <ClInclude Include="Menu\HUB&amp;RGB\TimeH.hpp">
+      <Filter>include\SimpleMode\Menu\RGB&amp;HUB%27</Filter>
+    </ClInclude>
+    <ClInclude Include="Menu\HUB&amp;RGB\ColorH.hpp">
+      <Filter>include\SimpleMode\Menu\RGB&amp;HUB%27</Filter>
+    </ClInclude>
+    <ClInclude Include="Menu\HUB&amp;RGB\StringH.hpp">
+      <Filter>include\SimpleMode\Menu\RGB&amp;HUB%27</Filter>
+    </ClInclude>
+    <ClInclude Include="Menu\HUB&amp;RGB\imgui_helper.hpp">
+      <Filter>include\SimpleMode\Menu\RGB&amp;HUB%27</Filter>
+    </ClInclude>
+    <ClInclude Include="Menu\HUB&amp;RGB\MH.hpp">
+      <Filter>include\SimpleMode\Menu\RGB&amp;HUB%27</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Memory\SlimMem.h">
+      <Filter>include\Memory</Filter>
+    </ClInclude>
+    <ClInclude Include="Menu\DrawUtils.h">
+      <Filter>include\SimpleMode\Menu</Filter>
+    </ClInclude>
+    <ClInclude Include="Menu\Guiprogram.h">
+      <Filter>include\SimpleMode\Menu</Filter>
+    </ClInclude>
+    <ClInclude Include="Menu\GuiControls.h">
+      <Filter>include\SimpleMode\Menu</Filter>
+    </ClInclude>
+    <ClInclude Include="Menu\color_t.hpp">
+      <Filter>include\SimpleMode\Menu</Filter>
+    </ClInclude>
+    <ClInclude Include="Menu\bytes.hpp">
+      <Filter>include\SimpleMode\Menu</Filter>
+    </ClInclude>
+    <ClInclude Include="Menu\hashes.hpp">
+      <Filter>include\SimpleMode\Menu</Filter>
+    </ClInclude>
+    <ClInclude Include="Menu\Font\Font.h">
+      <Filter>include\SimpleMode\Menu</Filter>
+    </ClInclude>
+    <ClInclude Include="Module\Modules\Scaffold.h">
+      <Filter>include\SimpleMode\Module\Modules\World</Filter>
+    </ClInclude>
+    <ClInclude Include="Config\UserManager.h">
+      <Filter>include\SimpleMode\Module</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
@@ -298,9 +319,6 @@
     </ClCompile>
     <ClCompile Include="..\Utils\Utils.cpp">
       <Filter>include\Utils</Filter>
-    </ClCompile>
-    <ClCompile Include="Menu\ImGuiMenu.cpp">
-      <Filter>include\SimpleMode\Menu</Filter>
     </ClCompile>
     <ClCompile Include="Module\ModManager.cpp">
       <Filter>include\SimpleMode\Module</Filter>
@@ -356,17 +374,11 @@
     <ClCompile Include="Menu\css.cpp">
       <Filter>include\SimpleMode\Menu</Filter>
     </ClCompile>
-    <ClCompile Include="Menu\Hub.cpp">
-      <Filter>include\SimpleMode\Menu</Filter>
-    </ClCompile>
     <ClCompile Include="..\SDK\GameMode.cpp">
       <Filter>include\SDK</Filter>
     </ClCompile>
     <ClCompile Include="..\SDK\ActorBase.cpp">
       <Filter>include\SDK</Filter>
-    </ClCompile>
-    <ClCompile Include="Menu\gui.cpp">
-      <Filter>include\SimpleMode\Menu</Filter>
     </ClCompile>
     <ClCompile Include="..\SDK\World.cpp">
       <Filter>include\SDK</Filter>
@@ -416,11 +428,47 @@
     <ClCompile Include="Module\Modules\Killaura.cpp">
       <Filter>include\SimpleMode\Module\Modules\Combat</Filter>
     </ClCompile>
-    <ClCompile Include="Config\ConfigManager.cpp">
-      <Filter>include\SimpleMode</Filter>
+    <ClCompile Include="Module\Modules\Fly.cpp">
+      <Filter>include\SimpleMode\Module\Modules\Movement</Filter>
     </ClCompile>
-    <ClCompile Include="Config\GetUsres.cpp">
-      <Filter>include\SimpleMode</Filter>
+    <ClCompile Include="Module\Modules\AutoTP.cpp">
+      <Filter>include\SimpleMode\Module\Modules\Player</Filter>
+    </ClCompile>
+    <ClCompile Include="Module\Modules\ESP.cpp">
+      <Filter>include\SimpleMode\Module\Modules\Visual</Filter>
+    </ClCompile>
+    <ClCompile Include="Menu\HUB&amp;RGB\TimeH.cpp">
+      <Filter>include\SimpleMode\Menu\RGB&amp;HUB%27</Filter>
+    </ClCompile>
+    <ClCompile Include="Menu\HUB&amp;RGB\ColorH.cpp">
+      <Filter>include\SimpleMode\Menu\RGB&amp;HUB%27</Filter>
+    </ClCompile>
+    <ClCompile Include="Menu\HUB&amp;RGB\StringH.cpp">
+      <Filter>include\SimpleMode\Menu\RGB&amp;HUB%27</Filter>
+    </ClCompile>
+    <ClCompile Include="Menu\HUB&amp;RGB\imgui_helper.cpp">
+      <Filter>include\SimpleMode\Menu\RGB&amp;HUB%27</Filter>
+    </ClCompile>
+    <ClCompile Include="Menu\HUB&amp;RGB\MH.cpp">
+      <Filter>include\SimpleMode\Menu\RGB&amp;HUB%27</Filter>
+    </ClCompile>
+    <ClCompile Include="..\Memory\SlimMem.cpp">
+      <Filter>include\Memory</Filter>
+    </ClCompile>
+    <ClCompile Include="Menu\DrawUtils.cpp">
+      <Filter>include\SimpleMode\Menu</Filter>
+    </ClCompile>
+    <ClCompile Include="Menu\Guiprogram.cpp">
+      <Filter>include\SimpleMode\Menu</Filter>
+    </ClCompile>
+    <ClCompile Include="Menu\GuiControls.cpp">
+      <Filter>include\SimpleMode\Menu</Filter>
+    </ClCompile>
+    <ClCompile Include="Module\Modules\Scaffold.cpp">
+      <Filter>include\SimpleMode\Module\Modules\World</Filter>
+    </ClCompile>
+    <ClCompile Include="Config\UserManager.cpp">
+      <Filter>include\SimpleMode\Module</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>

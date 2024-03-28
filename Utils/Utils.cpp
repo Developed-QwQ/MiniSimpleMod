@@ -170,14 +170,14 @@ void Utils::setClipboardText(std::string& text) {
 uintptr_t Utils::FindSignatureModule(const char* szModule, const char* szSignature) {
 	const char* pattern = szSignature;
 	uintptr_t firstMatch = 0;
-	static const auto rangeStart = (uintptr_t)GetModuleHandleA(szModule);
-	static MODULEINFO miModInfo;
-	static bool init = false;
+	const auto rangeStart = (uintptr_t)GetModuleHandleA(szModule);
+	MODULEINFO miModInfo;
+	bool init = false;
 	if (!init) {
 		init = true;
 		GetModuleInformation(GetCurrentProcess(), (HMODULE)rangeStart, &miModInfo, sizeof(MODULEINFO));
 	}
-	static const uintptr_t rangeEnd = rangeStart + miModInfo.SizeOfImage;
+	const uintptr_t rangeEnd = rangeStart + miModInfo.SizeOfImage;
 
 	BYTE patByte = GET_BYTE(pattern);
 	const char* oldPat = pattern;
@@ -234,15 +234,15 @@ uintptr_t Utils::FindSignatureModule(const char* szModule, const char* szSignatu
 #endif
 	return 0u;
 }
-//offset 3 
+
 uintptr_t Utils::getOffsetFromSignature(const char* szSignature, int offset) {
 	static uintptr_t signatureOffset = 0x0;                                            
 	if (signatureOffset == 0x0) {
-		uintptr_t sigOffset = FindSignature(szSignature);      //获取模块基址？？？
+		uintptr_t sigOffset = FindSignature(szSignature);
 
 		if (sigOffset != 0x0) 
 		{
-			int finalOffset = *reinterpret_cast<int*>((sigOffset + offset));                                  // Get Offset from code
+			int finalOffset = *reinterpret_cast<int*>((sigOffset + offset));             
 			signatureOffset = sigOffset - finalOffset + /*length of instruction*/ 7;
 			return signatureOffset;
 		}
@@ -263,6 +263,12 @@ uintptr_t** Utils::getVtableFromSignature(const char* szSignature, int offset) {
 	return 0u;
 }
 
+uintptr_t Utils::getfunction(const char* szModule, LPCSTR szSignature){
+	HMODULE hPENGLDLL = GetModuleHandle(szModule);
+	uintptr_t Module = (uintptr_t)GetProcAddress(hPENGLDLL, szSignature);
+	return Module;
+}
+
 void Utils::nopBytes(void* dst, unsigned int size) {
 	DWORD oldprotect;
 	VirtualProtect(dst, size, PAGE_EXECUTE_READWRITE, &oldprotect);
@@ -281,3 +287,4 @@ void Utils::patchBytes(void* dst, void* src, unsigned int size) {
 	memcpy(dst, src, size);
 	VirtualProtect(dst, size, oldprotect, &oldprotect);
 }
+Utils* utils = new Utils;

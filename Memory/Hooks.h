@@ -27,8 +27,8 @@ struct CoolSkinData {
 class Hooks {
 private:
 	bool shouldRender = true;
-
 public:
+
 	char currentScreenName[100];
 	std::vector<std::shared_ptr<FuncHook>> lambdaHooks;
 	struct NPCListPointerHolder {
@@ -45,11 +45,25 @@ public:
 	static void Enable();
 
 private:
-	static char _fastcall localPlayer(LocalPlayer* _this);
+	static char* _fastcall TextMessage(__int32);
+	static void _fastcall localPlayers(LocalPlayer* _this);
+	static Player __fastcall Actor_PlayerTick(Player* _this);
 	static void _fastcall ActorList_tick(ActorList* actorList);
+	static int _fastcall setBlockAll(void* _this,int a2,int a3,Vec3i pos);
 
+	std::unique_ptr<FuncHook> text;
+	std::unique_ptr<FuncHook> setblock;
 	std::unique_ptr<FuncHook> entity_tick;
-	std::unique_ptr<FuncHook> _localPlayer;
+	std::unique_ptr<FuncHook> localPlayeres;
+	std::unique_ptr<FuncHook> Actor_playerTick;
+public:
+	std::unique_ptr<FuncHook> oPresent;
+	std::unique_ptr<FuncHook> oDrawIndexed;
+
+	std::unique_ptr<FuncHook> oWGLSwapBuffers;
+	std::unique_ptr<FuncHook> oGLBegin;
+	std::unique_ptr<FuncHook> oGLColor4f;
+	std::unique_ptr<FuncHook> oGLClear;
 };
 
 extern Hooks g_Hooks;
@@ -58,68 +72,48 @@ class FuncHook {
 public:
 	void* funcPtr;
 	void* funcReal;
-
+	FuncHook(void* func) {}
 	FuncHook(void* func, void* hooked) {
 		funcPtr = func;
-
-		// Check if the function pointer is valid
 		if (IsBadReadPtr(funcPtr, sizeof(funcPtr))) {
-			//		cout<<"Invalid function pointer!"<<endl;
 			return;
 		}
 
 		MH_STATUS ret = MH_CreateHook(func, hooked, &funcReal);
 		if (ret == MH_OK && (__int32)func > 10) {
-			// Hook created successfully
-		}
-		else {
-			//		cout<<"MH_CreateHook "<<ret<<endl;
 		}
 	};
-
 	FuncHook(uintptr_t func, void* hooked) {
 		funcPtr = reinterpret_cast<void*>(func);
-
-		// Check if the function pointer is valid
 		if (IsBadReadPtr(funcPtr, sizeof(funcPtr))) {
-			//		cout<<"Invalid function pointer!"<<endl;
-			return;
-		}
-
+			return;}
 		MH_STATUS ret = MH_CreateHook(funcPtr, hooked, &funcReal);
-		if (ret == MH_OK && (__int32)funcPtr > 10) {
-		}
-		else {
-			//			cout << "MH_CreateHook " << ret << endl;
-		}
+		if (ret == MH_OK && (__int32)funcPtr > 10) {}
 	};
 
 	void enableHook(bool enable = true) {
 		if (funcPtr != nullptr) {
 			int ret = enable ? MH_EnableHook(funcPtr) : MH_DisableHook(funcPtr);
-			if (ret != MH_OK) {
-				//	cout<<"MH_EnableHook"<< ret<<endl;
-			}
-		}
-		else {
-			//			cout<<"enableHook() called with nullptr func!"<<endl;
-		}
+			if (ret != MH_OK) {}}
 	}
 	~FuncHook() { Restore(); }
-	// Restore the hook
 	void Restore() {
 		if (funcPtr != nullptr) {
 			MH_STATUS ret = MH_DisableHook(funcPtr);
-			if (ret != MH_OK) {
-				//				cout<<"MH_DisableHook"<<ret<<endl;
-			}
+			if (ret != MH_OK) {}
 		}
 	}
-	// Get the original function pointer with fastcall calling convention
 	template <typename TRet, typename... TArgs>
 
 	inline auto* GetFastcall() {
 		using Fn = TRet(__fastcall*)(TArgs...);
+		return reinterpret_cast<Fn>(funcReal);
+	};
+
+	template <typename TRet, typename... TArgs>
+
+	inline auto* Getstdcall() {
+		using Fn = TRet(__stdcall*)(TArgs...);
 		return reinterpret_cast<Fn>(funcReal);
 	};
 };

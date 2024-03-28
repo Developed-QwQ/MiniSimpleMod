@@ -13,5 +13,5 @@ public:
 	virtual void onEnable();
 	virtual void onDisable();
 	virtual void onFrame();
-	virtual const char* getModuleName();
+	virtual std::string getModuleName();
 };

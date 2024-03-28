@@ -1,8 +1,12 @@
 #include "Bhop.h"
 
 Bhop::Bhop() :IModule("Bhop", '0', Category::MOVEMENT, "Hop around like a bunny!") {
-//	this->registerBoolSetting("Hive", &this->hive, this->hive);
-//	this->registerFloatSetting("speed", &this->speed, this->speed, 0.1f, 0.8f);
+	//	this->registerBoolSetting("Hive", &this->hive, this->hive);
+	mode.addEntry(EnumEntry("Creative", 0))
+		.addEntry(EnumEntry("Jetpack", 1));
+	this->registerEnumSetting("Mode", &mode, 0);
+	this->registerFloatSetting("speed", &this->speed, this->speed, 0.1f, 0.8f);
+
 }
 
 Bhop::~Bhop()
@@ -10,8 +14,9 @@ Bhop::~Bhop()
 }
 
 void Bhop::onEnable() {
-	auto player = Game.getLocalPlayer();
-	if (player == nullptr) return;
+//	Game.getLocalPlayer()->GetGameObject();
+
+
 }
 
 void Bhop::onDisable()
@@ -22,7 +27,7 @@ void Bhop::onFrame()
 {
 }
 
-const char* Bhop::getModuleName()
+std::string Bhop::getModuleName()
 {
 	return "Bhop";
 }

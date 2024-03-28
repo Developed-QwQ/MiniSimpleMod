@@ -23,7 +23,7 @@
     <Keyword>Win32Proj</Keyword>
     <ProjectGuid>{d3877b0f-2ab7-4d8d-a506-009409260b1d}</ProjectGuid>
     <RootNamespace>SimpleMode</RootNamespace>
-    <WindowsTargetPlatformVersion>10.0.22000.0</WindowsTargetPlatformVersion>
+    <WindowsTargetPlatformVersion>10.0</WindowsTargetPlatformVersion>
     <ProjectName>MiniSimpleMode</ProjectName>
   </PropertyGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.Default.props" />
@@ -72,8 +72,8 @@
   </ImportGroup>
   <PropertyGroup Label="UserMacros" />
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
-    <IncludePath>D:\C语言\库\curl-8.6.0_1-win32-mingw\include;D:\源代码\C语言\源码\SimpleMode\includes\glm;C:\Program Files %28x86%29\Microsoft DirectX SDK %28June 2010%29\Include;$(IncludePath)</IncludePath>
-    <LibraryPath>D:\C语言\库\curl-8.6.0_1-win32-mingw\lib;C:\Program Files %28x86%29\Microsoft DirectX SDK %28June 2010%29\Lib\x86;$(LibraryPath)</LibraryPath>
+    <IncludePath>D:\C语言\库\cryptopp890;D:\C语言\库\curl-8.6.0_1-win32-mingw\include;D:\源代码\C语言\源码\SimpleMode\includes\glm;C:\Program Files %28x86%29\Microsoft DirectX SDK %28June 2010%29\Include;$(IncludePath)</IncludePath>
+    <LibraryPath>D:\源代码\C语言\源码\MiniSimpleMode\includes\lib;D:\C语言\库\curl-8.6.0_1-win32-mingw\lib;C:\Program Files %28x86%29\Microsoft DirectX SDK %28June 2010%29\Lib\x86;$(LibraryPath)</LibraryPath>
     <ExternalIncludePath>$(ExternalIncludePath)</ExternalIncludePath>
     <ReferencePath>D:\源代码\C语言\源码\SimpleMode\includes;$(ReferencePath)</ReferencePath>
   </PropertyGroup>
@@ -101,21 +101,26 @@
   </ItemDefinitionGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
     <ClCompile>
-      <WarningLevel>Level3</WarningLevel>
+      <WarningLevel>Level1</WarningLevel>
       <FunctionLevelLinking>true</FunctionLevelLinking>
-      <IntrinsicFunctions>true</IntrinsicFunctions>
+      <IntrinsicFunctions>false</IntrinsicFunctions>
       <SDLCheck>true</SDLCheck>
       <PreprocessorDefinitions>WIN32;NDEBUG;SIMPLEMOD_EXPORTS;_WINDOWS;_USRDLL;%(PreprocessorDefinitions)</PreprocessorDefinitions>
-      <ConformanceMode>true</ConformanceMode>
+      <ConformanceMode>Default</ConformanceMode>
       <PrecompiledHeader>NotUsing</PrecompiledHeader>
       <LanguageStandard>stdcpp17</LanguageStandard>
-      <RuntimeLibrary>MultiThreadedDLL</RuntimeLibrary>
+      <RuntimeLibrary>MultiThreaded</RuntimeLibrary>
+      <InlineFunctionExpansion>AnySuitable</InlineFunctionExpansion>
+      <WholeProgramOptimization>false</WholeProgramOptimization>
     </ClCompile>
     <Link>
-      <SubSystem>Windows</SubSystem>
-      <EnableCOMDATFolding>true</EnableCOMDATFolding>
-      <OptimizeReferences>true</OptimizeReferences>
-      <GenerateDebugInformation>true</GenerateDebugInformation>
+      <SubSystem>
+      </SubSystem>
+      <EnableCOMDATFolding>
+      </EnableCOMDATFolding>
+      <OptimizeReferences>
+      </OptimizeReferences>
+      <GenerateDebugInformation>DebugFastLink</GenerateDebugInformation>
       <EnableUAC>false</EnableUAC>
       <AdditionalDependencies>opengl32.lib;kernel32.lib;d3d11.lib;d3dcompiler.lib;dxgi.lib;%(AdditionalDependencies)</AdditionalDependencies>
     </Link>
@@ -191,8 +196,7 @@
     <ClInclude Include="..\includes\WinHttpClient.h" />
     <ClInclude Include="..\Memory\GameData.h" />
     <ClInclude Include="..\Memory\Hooks.h" />
-    <ClInclude Include="..\Misc\icoA.h" />
-    <ClInclude Include="..\Misc\icoB.h" />
+    <ClInclude Include="..\Memory\SlimMem.h" />
     <ClInclude Include="..\SDK\ActorBase.h" />
     <ClInclude Include="..\SDK\ClientInstance.h" />
     <ClInclude Include="..\SDK\GameMode.h" />
@@ -205,28 +209,36 @@
     <ClInclude Include="..\Utils\logger.h" />
     <ClInclude Include="..\Utils\Utils.h" />
     <ClInclude Include="..\Utils\xorstr.h" />
-    <ClInclude Include="Config\ConfigManager.h" />
-    <ClInclude Include="Config\GetUsres.h" />
+    <ClInclude Include="Config\UserManager.h" />
     <ClInclude Include="Loader.h" />
+    <ClInclude Include="Menu\bytes.hpp" />
     <ClInclude Include="Menu\color_t.hpp" />
     <ClInclude Include="Menu\css.h" />
+    <ClInclude Include="Menu\DrawUtils.h" />
     <ClInclude Include="Menu\Font\background_pic.h" />
     <ClInclude Include="Menu\Font\Font.h" />
-    <ClInclude Include="Menu\Font\ico_font.h" />
-    <ClInclude Include="Menu\Font\segue_font.h" />
-    <ClInclude Include="Menu\gui.hpp" />
-    <ClInclude Include="Menu\Hub.h" />
-    <ClInclude Include="Menu\ImGuiMenu.h" />
+    <ClInclude Include="Menu\GuiControls.h" />
+    <ClInclude Include="Menu\Guiprogram.h" />
+    <ClInclude Include="Menu\hashes.hpp" />
+    <ClInclude Include="Menu\HUB&amp;RGB\ColorH.hpp" />
+    <ClInclude Include="Menu\HUB&amp;RGB\imgui_helper.hpp" />
+    <ClInclude Include="Menu\HUB&amp;RGB\MH.hpp" />
+    <ClInclude Include="Menu\HUB&amp;RGB\StringH.hpp" />
+    <ClInclude Include="Menu\HUB&amp;RGB\TimeH.hpp" />
     <ClInclude Include="Menu\ModuleList.h" />
     <ClInclude Include="Module\ModManager.h" />
     <ClInclude Include="Module\Modules\Airjump.h" />
+    <ClInclude Include="Module\Modules\AutoTP.h" />
     <ClInclude Include="Module\Modules\Bhop.h" />
     <ClInclude Include="Module\Modules\D3DEsp.h" />
     <ClInclude Include="Module\Modules\Derp.h" />
+    <ClInclude Include="Module\Modules\ESP.h" />
+    <ClInclude Include="Module\Modules\Fly.h" />
     <ClInclude Include="Module\Modules\IModule.h" />
     <ClInclude Include="Module\Modules\Killaura.h" />
     <ClInclude Include="Module\Modules\Nuker.h" />
     <ClInclude Include="Module\Modules\Rangeblock.h" />
+    <ClInclude Include="Module\Modules\Scaffold.h" />
     <ClInclude Include="Module\Modules\speed.h" />
   </ItemGroup>
   <ItemGroup>
@@ -247,6 +259,7 @@
     <ClCompile Include="..\includes\kiero\minhook\src\trampoline.c" />
     <ClCompile Include="..\Memory\GameData.cpp" />
     <ClCompile Include="..\Memory\Hooks.cpp" />
+    <ClCompile Include="..\Memory\SlimMem.cpp" />
     <ClCompile Include="..\SDK\ActorBase.cpp" />
     <ClCompile Include="..\SDK\ClientInstance.cpp" />
     <ClCompile Include="..\SDK\GameMode.cpp" />
@@ -255,23 +268,31 @@
     <ClCompile Include="..\SDK\World.cpp" />
     <ClCompile Include="..\Utils\logger.cpp" />
     <ClCompile Include="..\Utils\Utils.cpp" />
-    <ClCompile Include="Config\ConfigManager.cpp" />
-    <ClCompile Include="Config\GetUsres.cpp" />
+    <ClCompile Include="Config\UserManager.cpp" />
     <ClCompile Include="Loader.cpp" />
     <ClCompile Include="Menu\css.cpp" />
-    <ClCompile Include="Menu\gui.cpp" />
-    <ClCompile Include="Menu\Hub.cpp" />
-    <ClCompile Include="Menu\ImGuiMenu.cpp" />
+    <ClCompile Include="Menu\DrawUtils.cpp" />
+    <ClCompile Include="Menu\GuiControls.cpp" />
+    <ClCompile Include="Menu\Guiprogram.cpp" />
+    <ClCompile Include="Menu\HUB&amp;RGB\ColorH.cpp" />
+    <ClCompile Include="Menu\HUB&amp;RGB\imgui_helper.cpp" />
+    <ClCompile Include="Menu\HUB&amp;RGB\MH.cpp" />
+    <ClCompile Include="Menu\HUB&amp;RGB\StringH.cpp" />
+    <ClCompile Include="Menu\HUB&amp;RGB\TimeH.cpp" />
     <ClCompile Include="Menu\ModuleList.cpp" />
     <ClCompile Include="Module\ModManager.cpp" />
     <ClCompile Include="Module\Modules\Airjump.cpp" />
+    <ClCompile Include="Module\Modules\AutoTP.cpp" />
     <ClCompile Include="Module\Modules\Bhop.cpp" />
     <ClCompile Include="Module\Modules\D3DEsp.cpp" />
     <ClCompile Include="Module\Modules\Derp.cpp" />
+    <ClCompile Include="Module\Modules\ESP.cpp" />
+    <ClCompile Include="Module\Modules\Fly.cpp" />
     <ClCompile Include="Module\Modules\IModule.cpp" />
     <ClCompile Include="Module\Modules\Killaura.cpp" />
     <ClCompile Include="Module\Modules\Nuker.cpp" />
     <ClCompile Include="Module\Modules\Rangeblock.cpp" />
+    <ClCompile Include="Module\Modules\Scaffold.cpp" />
     <ClCompile Include="Module\Modules\speed.cpp" />
   </ItemGroup>
   <ItemGroup>
